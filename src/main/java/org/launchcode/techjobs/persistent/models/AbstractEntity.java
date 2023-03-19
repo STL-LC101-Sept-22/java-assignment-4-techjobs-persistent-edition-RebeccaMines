@@ -1,11 +1,22 @@
 package org.launchcode.techjobs.persistent.models;
 
 import java.util.Objects;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 
+@MappedSuperclass
 public abstract class AbstractEntity {
 
+    @Id
+    @GeneratedValue
     private int id;
+
+    @NotBlank
+    @Size(min = 1, max = 80)
 
     private String name;
 
@@ -35,8 +46,6 @@ public abstract class AbstractEntity {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+    public int hashCode() { return Objects.hash(id); }
 
 }
